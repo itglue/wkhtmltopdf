@@ -995,12 +995,7 @@ void PdfConverterPrivate::printDocument() {
 		pageNumber=1;
 		for (int d=0; d < objects.size(); ++d) {
 			beginPrintObject(objects[d]);
-			// XXX: In some cases nothing gets loaded at all,
-			//      so we would get no webPrinter instance.
-			int pageCount = webPrinter != 0 ? webPrinter->pageCount() : 0;
-			//const settings::PdfObject & ps = objects[d].settings;
-
-			for(int i=0; i < pageCount; ++i) {
+           for(int i=0; i < objects[d].pageCount; ++i) {
 				if (!objects[d].headers.empty())
 					handleHeader(objects[d].headers[i], i);
 				if (!objects[d].footers.empty())
